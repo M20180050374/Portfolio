@@ -1,4 +1,3 @@
-[oi](www.teste.com.br)
 from bs4 import BeautifulSoup  # biblioteca que ler o html da página e permite coletar as informações
 from selenium import webdriver  # biblioteca que permite carregar o js da página (facilita clicks e preenchimentos)
 from selenium.webdriver.edge.options import Options  # importante para carregar algumas definições do navegador
@@ -21,14 +20,14 @@ generos = []
 resumo = []
 qtd_eps = []
 
-paginas_visitadas = []
+paginas_visitadas = [] #    uma lista com os links da páginas que visitamos para garantir não visitar a mesma página
 
-site = 'https://animesbr.cc/anime/'
+site = 'https://animesbr.cc/anime/' #    definição do site
 
-navegador = webdriver.Edge(options=options)
-navegador.get(site)
+navegador = webdriver.Edge(options=options) #    inicia o navegador com as opções deifinidas
+navegador.get(site) #     Abre a página que informamos
 
-pagina_principal = BeautifulSoup(navegador.page_source, 'html.parser')
+pagina_principal = BeautifulSoup(navegador.page_source, 'html.parser') #    pega o html da página e joga para o BS4 trabalhar
 while site not in paginas_visitadas:
 
     ''' A página inicial é um vetor com o nome do anime e o link de acesso a ele,
@@ -36,10 +35,11 @@ while site not in paginas_visitadas:
     animes = pagina_principal.find(name='div', id='archive-content').find_all(name='h3')
     for anime in animes:
         navegador.get(anime.find(name='a')['href'])  # acessando o link com as informações do anime em questão
-        pagina_anime = BeautifulSoup(navegador.page_source, features='html.parser')
+        pagina_anime = BeautifulSoup(navegador.page_source, features='html.parser') #    jogando o html agora com a página do anime
 
         ''' É nessa página que contém as informações que desejamos obter, portanto vamos inspecionar cada elemento
-            e entender como acessar essa informações pelo html'''
+            e entender como acessar essa informações pelo html. Note que coloquei vários try para evitar erros de algum anime não possuir as informações que desejamos
+            Se aplicarmos uma função o código não ficaria melhor?'''
         nome.append(pagina_anime.find(name='span', class_='breadcrumb_last').getText())
         try:
             data_lancamento.append(pagina_anime.find(name='span', class_='date').getText())
@@ -51,12 +51,9 @@ while site not in paginas_visitadas:
             Então procure observar e tentar abranger o máximo de variáveis possíveis'''
         try:
             emissoras = pagina_anime.find(name='div', class_='extra')  # gera duas span
-            emissora.append([x.getText() for x in emissoras.select('div.extra span:nth-child(2)')[0].find_all()])
+            emissora.append([x.getText() for x in emissoras.select('div.extra span:nth-child(2)')[0].find_all()]) #    um vetor com todas as emissoras
         except:
             emissora.append(np.nan)
-
-        # acesso a todas as opções da segunda span, pegando o nome das emissoras e salvando em um vetor sendo adicionado
-        # ao vetor principal da emissora
 
         try:
             nota.append(pagina_anime.find(name='span', class_='dt_rating_vgs').getText())
@@ -83,10 +80,12 @@ while site not in paginas_visitadas:
             qtd_eps.append(np.nan)
 
     paginas_visitadas.append(site)
-    site = pagina_principal.find(name='span', class_='current').find_next('a')['href']
+    site = pagina_principal.find(name='span', class_='current').find_next('a')['href'] #    atualiza o site para próxima página para repetir o processo
     navegador.get(site)
     pagina_principal = BeautifulSoup(navegador.page_source, 'html.parser')
 
+
+''' Após raspar todos os dados, jogamos em um pandas e depois exportamos em um csv '''
 import pandas as pd
 
 dados = {"Nome": nome,
@@ -100,6 +99,5 @@ dados = {"Nome": nome,
 
 
 dados_df = pd.DataFrame(dados)
-dados_df.head()
-dados_df.to_excel(r'C:\Riot Games\animes.xlsx')
+dados_df.to_excel(r'\animes.csv')
 
