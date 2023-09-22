@@ -64,5 +64,12 @@
 
   Note que precisamos definir previamente uma variável com a página html para que seja possível fazer a busca. Para isso vamos pegar o site de um anime qualquer e abrir com a biblioteca Selenium (webdriver) que definimos anteriormente: `navegador = webdriver.Edge(options=options)` Assim conseguimos abrir o navegador. `navegador.get(site_do_anime)` Aqui mandamos ele abrir o site e aqui salvamos a informação do HTML da página para o Beautiful Soup `pagina_anime = BeautifulSoup(navegador.page_source, features='html.parser')`
 
-  Com o HTML definido, bastante utilizar o find e salvar o elemento desejado: `nome.append(pagina_anime.find(name='span', class_='breadcrumb_last').getText())`. get.Text() permite pegar somente o elemento de texto, que, nesse caso, é o nome do anime.
+  Com o HTML definido, bastante utilizar o find e salvar o elemento desejado: `nome.append(pagina_anime.find(name='span', class_='breadcrumb_last').getText())`.  `get.Text()` permite pegar somente o elemento de texto, que, nesse caso, é o nome do anime.
 
+  Em alguns momentos o que você busca na página não estará disponível, simplesmente por não existir aquela informação. Para tratar isso, utilizei o `try` e o `except` do Python e assim retornando `np.nan` (vazio) no que não fosse encontrado, observe:
+
+  `try:
+     data_lancamento.append(pagina_anime.find(name='span', class_='date').getText())
+   except:
+     data_lancamento.append(np.nan)
+  `
