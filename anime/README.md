@@ -19,3 +19,7 @@
   - Quantidade de episódios
   
   Após isso só precisamos 'passar' por cada anime do site e coletar as informações, jogar essas informações em um pandas e um csv para exportar.
+
+  ### DESTRINCHANDO
+
+  
