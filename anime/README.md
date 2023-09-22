@@ -28,5 +28,14 @@
 
   Vale salientar que já vi projetos assim serem executados em ordens distintas, mas eu prefiro executar como está na lista, mesmo que a ordem final do código seja divergente.
 
+  Antes de tudo, vamos importar todas as bibliotecas que vamos utilizar.
+  '''
+  from bs4 import BeautifulSoup  # biblioteca que ler o html da página e permite coletar as informações
+  from selenium import webdriver  # biblioteca que permite carregar o js da página (facilita clicks e preenchimentos)
+  from selenium.webdriver.edge.options import Options  # importante para carregar algumas definições do navegador
+  import numpy as np
+  import pandas as pd
+  '''
   #### Coletando dados do anime
+
   
