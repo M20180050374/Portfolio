@@ -79,6 +79,9 @@ Algumas informações também não serão necessiriamente uma string, e sim um c
 ```Python
 generos.append([x.getText() for x in pagina_anime.find(name='div', class_='sgeneros').find_all()])
 ```
+  - [x] Coletar os dados de um anime
+  - [ ] Passar por todos os animes de uma página
+  - [ ] Passar por todas as páginas do site
 
 _Note que estou salvando as informações dentro de uma lista, pois isso facilitará na organização dos dados para geração do arquivo CSV.
 _
@@ -91,7 +94,7 @@ Você irá nota que em muitos sites a listagem de itens nela é uma lista com me
 ```Python
 animes = pagina_principal.find(name='div', id='archive-content').find_all(name='h3')
 ```
-Esse código gera uma lista com todos os animes da página, contendo o nome do anime e o link para página do anime. Tudo que precisamos fazer é o Selenium abrir o link do primeiro anime, coletar as informações e depois seguir para o próximo anime da lista. O código fica da seguinte maneira:
+Esse código gera uma lista com todos os animes da página, contendo o nome do anime e o link para página do anime. Tudo que precisamos fazer é solicitar para Selenium abrir o link do primeiro anime, coletar as informações e depois seguir para o próximo anime da lista. O código fica da seguinte maneira:
 
 ```Python
  animes = pagina_principal.find(name='div', id='archive-content').find_all(name='h3')
@@ -100,4 +103,29 @@ Esse código gera uma lista com todos os animes da página, contendo o nome do a
         pagina_anime = BeautifulSoup(navegador.page_source, features='html.parser') #    jogando o html agora com a página do anime
 ```
 
-Agora não vamos mais coletar as informações do anime de uma página qualquer, mas sim da `pagina_anime` que o anime atual.
+Agora não vamos mais coletar as informações do anime de uma página qualquer, mas sim da `pagina_anime` que é o anime atual.
+
+  - [x] Coletar os dados de um anime
+  - [x] Passar por todos os animes de uma página
+  - [ ] Passar por todas as páginas do site
+
+Nossa última etapa então é passar por todas as páginas do site. Essa etapa pode ser feita de várias manerias a depender do site. Muitos sites trabalham com um elemento que permite ser clicado e levado para próxima página e é o caso que vamos trabalhar nesse projeto. 
+
+Ir para próxima página é só mais um elemento que possui um link, logo só precisamos solicitar ao Selenium que abra esse link e passemos o HTML para o Beautiful Soup continuar o código que já escrevemos. Nesse caso em específico, vamos limitar que o código a parar quando ele tentar entrar em um link que já passou. Isso foi necessário, pois ao chegar na última página, o botão de próxima página se tornava o de página anterior, podendo causar um loop infinito e repetição de coleta dos dados.
+
+Para isso só precisamos armazenar o site atual em uma lista e sempre checar se o próximo site já está contido nessa lista (já definimos lá em cima). O código fica o seguinte:
+
+```Python
+while site not in paginas_visitadas: #  garantindo a não repetição do site
+  animes = pagina_principal.find(name='div', id='archive-content').find_all(name='h3')
+      for anime in animes:
+          navegador.get(anime.find(name='a')['href'])  # acessando o link com as informações do anime em questão
+          pagina_anime = BeautifulSoup(navegador.page_source, features='html.parser') #    jogando o html agora com a página do anime
+
+#[coleta dos dados da página]
+
+  paginas_visitadas.append(site) #  salvando o site atual na lista de sites visitados
+  site = pagina_principal.find(name='span', class_='current').find_next('a')['href'] #    atualiza o site para próxima página para repetir o processo
+  navegador.get(site) #  para abrir a próxima página
+  pagina_principal = BeautifulSoup(navegador.page_source, 'html.parser') #  jogando o html da nova página
+```
