@@ -36,7 +36,7 @@
   from selenium.webdriver.edge.options import Options  # importante para carregar algumas definições do navegador
   import numpy as np
   import pandas as pd
-```
+  ```
 
 ```
 #   lista de informações que conseguimos retirar do site
