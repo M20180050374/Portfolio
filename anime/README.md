@@ -68,8 +68,8 @@
 
   Em alguns momentos o que você busca na página não estará disponível, simplesmente por não existir aquela informação. Para tratar isso, utilizei o `try` e o `except` do Python e assim retornando `np.nan` (vazio) no que não fosse encontrado, observe:
 
-  `try:
+  ```try:
      data_lancamento.append(pagina_anime.find(name='span', class_='date').getText())
    except:
      data_lancamento.append(np.nan)
-  `
+  ```
