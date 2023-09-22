@@ -4,4 +4,4 @@
 
 ## WEB SCRAPPING
 
-Web Scrapping
+  Web Scrapping consiste na coleta de dados de sites para ser armazenado em arquivos ou bancos de dados [(ZHAO, 2017)](https://www.researchgate.net/profile/Bo-Zhao-3/publication/317177787_Web_Scraping/links/5c293f85a6fdccfc7073192f/Web-Scraping.pdf)
