@@ -28,7 +28,7 @@
 
   Vale salientar que já vi projetos assim serem executados em ordens distintas, mas eu prefiro executar como está na lista, mesmo que a ordem final do código seja divergente.
 
-  Antes de tudo, vamos importar todas as bibliotecas que vamos utilizar.
+  Antes de tudo, vamos definir algumas variáveis padrões, importar nossas bibliotecas e configurar nosso ambiente
 
   ```
   from bs4 import BeautifulSoup  # biblioteca que ler o html da página e permite coletar as informações
@@ -37,6 +37,25 @@
   import numpy as np
   import pandas as pd
 ```
+
+```
+#   lista de informações que conseguimos retirar do site
+nome = []
+data_lancamento = []
+emissora = []
+nota = []
+votos = []
+generos = []
+resumo = []
+qtd_eps = []
+´´´
+
+´´´
+paginas_visitadas = [] #    uma lista com os links da páginas que visitamos para garantir não visitar a mesma página
+
+site = 'https://animesbr.cc/anime/' #    definição do site
+```
+
   #### Coletando dados do anime
 
   
