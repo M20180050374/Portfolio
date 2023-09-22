@@ -152,3 +152,6 @@ dados = {"Nome": nome,
 dados_df = pd.DataFrame(dados)
 dados_df.to_excel(r'\animes.csv')
 ```
+
+## ANÁLISE DESCRITIVA DOS DADOS COLETADOS
+
