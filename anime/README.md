@@ -30,7 +30,7 @@
 
   Antes de tudo, vamos definir algumas variáveis padrões, importar nossas bibliotecas e configurar nosso ambiente
 
-  ```
+  ```python
   from bs4 import BeautifulSoup  # biblioteca que ler o html da página e permite coletar as informações
   from selenium import webdriver  # biblioteca que permite carregar o js da página (facilita clicks e preenchimentos)
   from selenium.webdriver.edge.options import Options  # importante para carregar algumas definições do navegador
@@ -39,7 +39,7 @@
   ```
 
 
-  ```
+  ```python
   #   lista de informações que conseguimos retirar do site
   nome = []
   data_lancamento = []
@@ -68,7 +68,7 @@
 
   Em alguns momentos o que você busca na página não estará disponível, simplesmente por não existir aquela informação. Para tratar isso, utilizei o `try` e o `except` do Python e assim retornando `np.nan` (vazio) no que não fosse encontrado, observe:
 
-```
+```python
 try:
   data_lancamento.append(pagina_anime.find(name='span', class_='date').getText())
 except:
