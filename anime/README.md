@@ -56,11 +56,11 @@
 
   #### Coletando dados do anime
   
-  Para coletar as informações da página do anime, basta inspecionar o html da página na informação que você deseja coletar e verificar qual melhor maneira de buscar aquele elemento HTML. O Beautiful Soup tem várias opções de busca como por XPATH, ID, Class e várias outras. Para esse projeto vamos utilizar a busca por Class, que basicamente é um código que permiti diferenciar de outros tipos iguais (procurem por HTML do professor guanabara).
+  Para coletar as informações da página do anime, basta inspecionar o html da página na informação que você deseja coletar e verificar qual melhor maneira de buscar aquele elemento HTML. O Beautiful Soup tem várias opções de busca como por XPATH, ID, Class e várias outras. 
+  
+  Para esse projeto vamos utilizar a busca por Class, que basicamente é um código que permiti diferenciar de outros tipos iguais (procurem por HTML do professor guanabara).
 
   Vamos utilizar a função find do Beautiful Soup para procurar o elemento por tipo (div, span, h3) e a Class, logo temos:  `html.find(tipo=tipo, class_=class)`
 
-  Note que precisamos definir previamente uma variável com a página html para que seja possível fazer a busca. Para isso vamos pegar o site de um anime qualquer e abrir com a biblioteca Selenium (webdriver) que definimos anteriormente:
-  
-  `navegador = webdriver.Edge(options=options)` Assim conseguimos abrir o navegador. `navegador.get(site_do_anime)` Aqui mandamos ele abrir o site e aqui salvamos a informação do HTML da página para o Beautiful Soup ` pagina_anime = BeautifulSoup(navegador.page_source, features='html.parser')`
+  Note que precisamos definir previamente uma variável com a página html para que seja possível fazer a busca. Para isso vamos pegar o site de um anime qualquer e abrir com a biblioteca Selenium (webdriver) que definimos anteriormente: `navegador = webdriver.Edge(options=options)` Assim conseguimos abrir o navegador. `navegador.get(site_do_anime)` Aqui mandamos ele abrir o site e aqui salvamos a informação do HTML da página para o Beautiful Soup `pagina_anime = BeautifulSoup(navegador.page_source, features='html.parser')`
 
