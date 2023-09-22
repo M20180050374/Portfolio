@@ -20,13 +20,9 @@
   
   Após isso só precisamos 'passar' por cada anime do site e coletar as informações, jogar essas informações em um pandas e um csv para exportar.
 
-  ### DESTRINCHANDO
+  ### ETAPAS
 
-    TASDASDASD COLETANDOA S INFORMAÇ~OES VAMOS PARA CIMA
-
-    ASDASDASD
-
-
-    ASDASDASD
-
-    ASDASDAS
+    Vamos dividir o web scraping em 3 etapas:
+    [] Coletar os dados de um anime
+    [] Passar por todos os animes de uma página
+    [] Passar por todas as páginas do site
