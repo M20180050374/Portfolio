@@ -129,3 +129,26 @@ while site not in paginas_visitadas: #  garantindo a não repetição do site
   navegador.get(site) #  para abrir a próxima página
   pagina_principal = BeautifulSoup(navegador.page_source, 'html.parser') #  jogando o html da nova página
 ```
+
+  - [x] Coletar os dados de um anime
+  - [x] Passar por todos os animes de uma página
+  - [x] Passar por todas as páginas do site
+
+Extração dos dados concluída com sucesso!
+
+Tudo que precisamos agora é enviar para um banco de dados (exportei para CSV) que depois vamos averiguar a qualidade do que coletamos.
+
+```Python
+dados = {"Nome": nome,
+         "Qtd_Eps": qtd_eps,
+         "Data de Lançamento": data_lancamento,
+         "Emissora": emissora,
+         "Nota": nota,
+         "Votos": votos,
+         "Generos": generos,
+         "Resumo": resumo}
+
+
+dados_df = pd.DataFrame(dados)
+dados_df.to_excel(r'\animes.csv')
+```
