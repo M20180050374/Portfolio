@@ -79,3 +79,25 @@ Algumas informações também não serão necessiriamente uma string, e sim um c
 ```Python
 generos.append([x.getText() for x in pagina_anime.find(name='div', class_='sgeneros').find_all()])
 ```
+
+_Note que estou salvando as informações dentro de uma lista, pois isso facilitará na organização dos dados para geração do arquivo CSV.
+_
+
+
+Após coletar todas as informações de um único anime, vamos tentar passar por todos os anime de uma página
+
+Você irá nota que em muitos sites a listagem de itens nela é uma lista com mesmo Class e contendo vários elemntos. Tudo que precisamos é identificar qual a Class dessa listagem e acessar o link de cada item da lista.
+
+```Python
+animes = pagina_principal.find(name='div', id='archive-content').find_all(name='h3')
+```
+Esse código gera uma lista com todos os animes da página, contendo o nome do anime e o link para página do anime. Tudo que precisamos fazer é o Selenium abrir o link do primeiro anime, coletar as informações e depois seguir para o próximo anime da lista. O código fica da seguinte maneira:
+
+```Python
+ animes = pagina_principal.find(name='div', id='archive-content').find_all(name='h3')
+    for anime in animes:
+        navegador.get(anime.find(name='a')['href'])  # acessando o link com as informações do anime em questão
+        pagina_anime = BeautifulSoup(navegador.page_source, features='html.parser') #    jogando o html agora com a página do anime
+```
+
+Agora não vamos mais coletar as informações do anime de uma página qualquer, mas sim da `pagina_anime` que o anime atual.
