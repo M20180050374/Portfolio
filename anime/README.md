@@ -38,24 +38,23 @@
   import pandas as pd
   ```
 
-```
-#   lista de informações que conseguimos retirar do site
-nome = []
-data_lancamento = []
-emissora = []
-nota = []
-votos = []
-generos = []
-resumo = []
-qtd_eps = []
-´´´
 
+  ```
+  #   lista de informações que conseguimos retirar do site
+  nome = []
+  data_lancamento = []
+  emissora = []
+  nota = []
+  votos = []
+  generos = []
+  resumo = []
+  qtd_eps = []
+  ```
 
-```
-paginas_visitadas = [] #    uma lista com os links da páginas que visitamos para garantir não visitar a mesma página
-
-site = 'https://animesbr.cc/anime/' #    definição do site
-´´´
+  ```
+  paginas_visitadas = [] #    uma lista com os links da páginas que visitamos para garantir não visitar a mesma página
+  site = 'https://animesbr.cc/anime/' #    definição do site
+  ```
 
   #### Coletando dados do anime
 
