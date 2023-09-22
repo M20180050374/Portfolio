@@ -74,7 +74,7 @@ try:
 except:
   data_lancamento.append(np.nan)
 ```
-Algumas informações também não serão necessiriamente uma string, e sim um conjunto de string, como por exêmplo os gêneros dos animes, nos quais é bem comum ter um anime com mais de um gênero. Nesse projeto vamos optar por unir as strings em uma lista, como mostrado abaixo:
+Algumas informações também não serão necessiriamente uma string, e sim um conjunto de string, como por exêmplo os gêneros dos animes, nos quais são bem comum ter um anime com mais de um gênero. Nesse projeto vamos optar por unir as strings em uma lista, como mostrado abaixo:
 
 ```Python
 generos.append([x.getText() for x in pagina_anime.find(name='div', class_='sgeneros').find_all()])
