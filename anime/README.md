@@ -25,3 +25,8 @@
   - [ ] Coletar os dados de um anime
   - [ ] Passar por todos os animes de uma página
   - [ ] Passar por todas as páginas do site
+
+  Vale salientar que já vi projetos assim serem executados em ordens distintas, mas eu prefiro executar como está na lista, mesmo que a ordem final do código seja divergente.
+
+  #### Coletando dados do anime
+  
