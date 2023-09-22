@@ -50,11 +50,12 @@ resumo = []
 qtd_eps = []
 ´´´
 
-´´´
+
+```
 paginas_visitadas = [] #    uma lista com os links da páginas que visitamos para garantir não visitar a mesma página
 
 site = 'https://animesbr.cc/anime/' #    definição do site
-```
+´´´
 
   #### Coletando dados do anime
 
