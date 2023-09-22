@@ -1,4 +1,4 @@
-#ANIMES
+# ANIMES
 
 Esse projeto consiste na busca por dados na internet com uso do Selenium e BS4 do Python,
 alocar esses dados em um banco de dados qualquer para fazer uma análise descritiva utilizando SQL e Python,
