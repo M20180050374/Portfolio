@@ -1,4 +1,4 @@
-[oi](www.teste)
+[oi](www.teste.com.br)
 from bs4 import BeautifulSoup  # biblioteca que ler o html da página e permite coletar as informações
 from selenium import webdriver  # biblioteca que permite carregar o js da página (facilita clicks e preenchimentos)
 from selenium.webdriver.edge.options import Options  # importante para carregar algumas definições do navegador
