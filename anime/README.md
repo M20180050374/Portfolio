@@ -22,6 +22,6 @@
 
   ### ETAPAS
   Vamos dividir o web scraping em 3 etapas:
-  [ ] Coletar os dados de um anime
-  [ ] Passar por todos os animes de uma página
-  [ ] Passar por todas as páginas do site
+  - [ ] Coletar os dados de um anime
+  - [ ] Passar por todos os animes de uma página
+  - [ ] Passar por todas as páginas do site
