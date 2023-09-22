@@ -58,4 +58,4 @@
   
   Para coletar as informações da página do anime, basta inspecionar o html da página na informação que você deseja coletar e verificar qual melhor maneira de buscar aquele elemento HTML. O Beautiful Soup tem várias opções de busca como por XPATH, ID, Class e várias outras. Para esse projeto vamos utilizar a busca por Class, que basicamente é um código que permiti diferenciar de outros tipos iguais (procurem por HTML do professor guanabara).
 
-  Vamos utilizar a função find do Beautiful Soup para procurar o elemento por tipo (div, span, h3) e a Class, logo temos:  ´html.find(tipo=tipo, class_=class)`
+  Vamos utilizar a função find do Beautiful Soup para procurar o elemento por tipo (div, span, h3) e a Class, logo temos:  `html.find(tipo=tipo, class_=class)`
