@@ -150,7 +150,7 @@ dados = {"Nome": nome,
 
 
 dados_df = pd.DataFrame(dados)
-dados_df.to_excel(r'\animes.csv')
+dados_df.to_csv(r'\animes.csv', sep="|")
 ```
 
 ## ANÁLISE DESCRITIVA DOS DADOS COLETADOS
