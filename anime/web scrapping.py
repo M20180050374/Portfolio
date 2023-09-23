@@ -79,10 +79,10 @@ while site not in paginas_visitadas:
         except:
             qtd_eps.append(np.nan)
 
-    paginas_visitadas.append(site)
+    paginas_visitadas.append(site) # adiciona o site na lista de sites visitados
     site = pagina_principal.find(name='span', class_='current').find_next('a')['href'] #    atualiza o site para próxima página para repetir o processo
-    navegador.get(site)
-    pagina_principal = BeautifulSoup(navegador.page_source, 'html.parser')
+    navegador.get(site) #    abrir a próxima página
+    pagina_principal = BeautifulSoup(navegador.page_source, 'html.parser') #    jogando html do novo site
 
 
 ''' Após raspar todos os dados, jogamos em um pandas e depois exportamos em um csv '''
@@ -99,5 +99,5 @@ dados = {"Nome": nome,
 
 
 dados_df = pd.DataFrame(dados)
-dados_df.to_excel(r'\animes.csv')
+dados_df.to_csv(r'\animes.csv', sep="|")
 
