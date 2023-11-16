@@ -6,7 +6,7 @@ import numpy as np
 options = Options()
 options.add_argument("--start-minimized")  # para ir testando, não gosto de abrir o navegador sempre
 
-''' com site definido, vamos abrir ele e entender o seu html, os navegadores permite que você verifique o html de 
+''' Com site definido, vamos abrir ele e entender o seu html, os navegadores permite que você verifique o html de 
     qualquer site e entender como a disposição das informações podem ser encontradas como uma espécie de vetor,
     logo o seu objetivo é encontrar uma maneira de iterar nas informações que você deseja.'''
 
