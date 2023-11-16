@@ -51,7 +51,7 @@ while site not in paginas_visitadas:
             Então procure observar e tentar abranger o máximo de variáveis possíveis'''
         try:
             emissoras = pagina_anime.find(name='div', class_='extra')  # gera duas span
-            emissora.append([x.getText() for x in emissoras.select('div.extra span:nth-child(2)')[0].find_all()]) #    um vetor com todas as emissoras
+            emissora.append(", ".join([x.getText() for x in emissoras.select('div.extra span:nth-child(2)')[0].find_all()])) #    um vetor com todas as emissoras
         except:
             emissora.append(np.nan)
 
@@ -67,7 +67,7 @@ while site not in paginas_visitadas:
 
         ''' Mesma situação das emissoras, um anime pode ter vários gêneros associados e class "sgeneros" possue todos eles
             por isso crio um vetor com todos os resultados desse trecho do html'''
-        generos.append([x.getText() for x in pagina_anime.find(name='div', class_='sgeneros').find_all()])
+        generos.append(", ".join([x.getText() for x in pagina_anime.find(name='div', class_='sgeneros').find_all()]))
 
         try:
             resumo.append(pagina_anime.find(name='div', class_='single_tabs').find(name='p').getText())
@@ -85,19 +85,29 @@ while site not in paginas_visitadas:
     pagina_principal = BeautifulSoup(navegador.page_source, 'html.parser') #    jogando html do novo site
 
 
-''' Após raspar todos os dados, jogamos em um pandas e depois exportamos em um csv '''
+''' Após raspar todos os dados, jogamos em um pandas e depois exportamos em um csv
+    Vamos fazer algumas operações para que fique de acordo com o banco de dados criado.
+    Precisamos garantir os tipos dos dados, retirar os dados que estão em listas e separa-los por ",". '''
 import pandas as pd
 
-dados = {"Nome": nome,
-         "Qtd_Eps": qtd_eps,
-         "Data de Lançamento": data_lancamento,
-         "Emissora": emissora,
-         "Nota": nota,
-         "Votos": votos,
-         "Generos": generos,
-         "Resumo": resumo}
+dados = {"nome": nome,
+         "qtd_eps": qtd_eps,
+         "emissao_date": data_lancamento,
+         "emissoras": emissora,
+         "nota": nota,
+         "votos": votos,
+         "generos": generos,
+         "resumo": resumo}
 
 
 dados_df = pd.DataFrame(dados)
-dados_df.to_csv(r'\animes.csv', sep="|")
 
+dados_df.info
+
+dados_df['qtd_eps'] = dados_df['qtd_eps'].astype(int, errors='ignore')
+dados_df['emissao_date'] = pd.to_datetime(dados_df['emissao_date'], errors='ignore')
+dados_df['nota'] = dados_df['nota'].astype(float, errors='ignore')
+dados_df['votos'] = dados_df['votos'].str.replace(',','').astype(int, errors='ignore')
+
+dados_df.to_excel('C:\\Projetos\\projetos_portfolio\\Portfolio.xlsx', index=False)
+dados_df.to_csv('C:\\Projetos\\projetos_portfolio\\Portfolio.csv', sep="|", index=False)
