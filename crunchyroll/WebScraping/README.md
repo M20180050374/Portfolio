@@ -10,7 +10,7 @@ O processo de raspagem é feito na busca dos dados anexados os HTML, no qual é 
 está dentro do HTML. O que precisamos fazer é acessar o site, pegar o HTML dele e procurar exatamente onde está a informação desejada. HTML não é uma linguagem de programação, é uma linguagem de marcação 
 e segue uma estruturação firme para exposição dos dados, nas chamadas TAGs. Quer entender mais sobre HTML? Assista os vídeos do [Professor Guanabara](https://www.youtube.com/@CursoemVideo)
 
-Entretanto, as empresas buscam aperfeiçoar seus sites utilizando linguagem de programação para tentar dinamizar os sites, fazendo com que o HTML esteja em constantes mudanças, o que dificulta
+Entretanto, as empresas buscam aperfeiçoar seus sites utilizando linguagem de programação para tentar dinamizar os sites, fazendo com que o HTML esteja em constante mudança, o que dificulta
 nossa raspagem. Por isso a biblioteca selenium é importante nessa raspagem, pois nos permite utilizar o navegador de uma maneira que a linguagem de programação do site seja executada e altere o HTML
 e assim teremos tudo o que precisamos.
 
